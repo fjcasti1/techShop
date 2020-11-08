@@ -1,5 +1,10 @@
+header {
+  width: 100vw;
+}
+
 main {
   min-height: 80vh;
+  width: 100vw;
 }
 
 .rating span {
