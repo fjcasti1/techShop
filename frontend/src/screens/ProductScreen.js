@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
-import products from '../products';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const ProductScreen = ({ match }) => {
-  const product = products.find((product) => product._id === match.params.id);
+  const [product, setProduct] = useState({});
   const {
     name,
     image,
@@ -16,6 +16,20 @@ const ProductScreen = ({ match }) => {
     description,
     countInStock,
   } = product;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/api/products/${match.params.id}`);
+        setProduct(res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Fragment>
       <Link className='btn btn-dark my-3' to='/'>
