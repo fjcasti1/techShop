@@ -28,7 +28,7 @@ const ProductScreen = ({ match }) => {
     };
     fetchData();
     // eslint-disable-next-line
-  }, []);
+  }, [match]);
 
   return (
     <Fragment>
