@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import 'colors';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -12,8 +13,13 @@ connectDB();
 
 const app = express();
 
+// Accept json data in req.body
+app.use(express.json());
+
 // Products Routes
 app.use('/api/products', productRoutes);
+// Users Routes
+app.use('/api/users', userRoutes);
 
 const __dirname = path.resolve();
 
