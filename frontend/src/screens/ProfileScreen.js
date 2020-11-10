@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Row, Col, Form } from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUserProfile } from '../actions/userActions';
+import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
 const ProfileScreen = ({ history, location }) => {
   const [name, setName] = useState('');
@@ -22,21 +23,26 @@ const ProfileScreen = ({ history, location }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const { success } = userUpdateProfile;
+
   useEffect(() => {
     if (!userInfo) {
       history.push('/login');
     } else {
-      if (!user.name) {
+      if (!user || !user.name || success) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile'));
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(updateUserProfile({ id: user._id, name, email, password }));
   };
 
   return (
@@ -49,7 +55,7 @@ const ProfileScreen = ({ history, location }) => {
             <h2>User Profile </h2>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
-            {loading && <Loader />}
+            {success && <Message variant='success'>Profile Updated</Message>}
             <Form onSubmit={submitHandler}>
               <Form.Group controlId='name'>
                 <Form.Label>Name</Form.Label>
