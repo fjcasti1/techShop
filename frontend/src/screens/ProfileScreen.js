@@ -34,8 +34,8 @@ const ProfileScreen = ({ history, location }) => {
         dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile'));
       } else {
-        setName(user.name);
-        setEmail(user.email);
+        setName(userInfo.name);
+        setEmail(userInfo.email);
       }
     }
   }, [dispatch, history, userInfo, user, success]);
