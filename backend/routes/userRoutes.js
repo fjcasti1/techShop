@@ -4,6 +4,7 @@ import {
   registerUser,
   authUser,
   getUserProfile,
+  updateUserProfile,
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -12,7 +13,9 @@ const router = express.Router();
 router.post('/', registerUser);
 // Log in user
 router.post('/login', authUser);
-// Get logged in user
+// Get logged in user profile data
 router.get('/profile', protect, getUserProfile);
+// Update user profile
+router.put('/profile', protect, updateUserProfile);
 
 export default router;
