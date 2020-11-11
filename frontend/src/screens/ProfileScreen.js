@@ -13,9 +13,6 @@ const ProfileScreen = ({ history, location }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [message, setMessage] = useState(null);
-
-  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   const dispatch = useDispatch();
 
@@ -59,7 +56,6 @@ const ProfileScreen = ({ history, location }) => {
         <Row>
           <Col md={3}>
             <h2>User Profile </h2>
-            {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {success && <Message variant='success'>Profile Updated</Message>}
             <Form onSubmit={submitHandler}>
