@@ -23,6 +23,8 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 // Order Routes
 app.use('/api/orders', orderRoutes);
+// PayPal Route
+app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID));
 
 const __dirname = path.resolve();
 
