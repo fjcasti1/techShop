@@ -6,7 +6,7 @@ import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
 
-const PaymentScreen = ({ history }) => {
+const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart);
@@ -160,4 +160,4 @@ const PaymentScreen = ({ history }) => {
   );
 };
 
-export default PaymentScreen;
+export default PlaceOrderScreen;
