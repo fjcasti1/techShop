@@ -6,6 +6,7 @@ import {
   getUserProfile,
   updateUserProfile,
   getUsers,
+  deleteUser,
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -21,5 +22,7 @@ router.put('/profile', protect, updateUserProfile);
 
 // Get all users. ADMIN
 router.get('/', protect, protectAdmin, getUsers);
+// Delete user. ADMIN
+router.delete('/:id', protect, protectAdmin, deleteUser);
 
 export default router;
