@@ -7,6 +7,8 @@ import {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
+  updateUser,
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -24,5 +26,9 @@ router.put('/profile', protect, updateUserProfile);
 router.get('/', protect, protectAdmin, getUsers);
 // Delete user. ADMIN
 router.delete('/:id', protect, protectAdmin, deleteUser);
+// Get user by Id. ADMIN
+router.get('/:id', protect, protectAdmin, getUserById);
+// Update user. ADMIN
+router.put('/:id', protect, protectAdmin, updateUser);
 
 export default router;
