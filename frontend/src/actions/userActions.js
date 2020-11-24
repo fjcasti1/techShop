@@ -16,6 +16,7 @@ import {
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_LIST_RESET,
 } from '../constants/userConstants';
 import { ORDER_USER_LIST_RESET } from '../constants/orderConstants';
 import axios from 'axios';
@@ -96,6 +97,7 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo');
   dispatch({ type: ORDER_USER_LIST_RESET });
   dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: USER_LIST_RESET });
   dispatch({ type: USER_LOGOUT });
 };
 
