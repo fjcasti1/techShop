@@ -1,10 +1,11 @@
 import express from 'express';
-import protect from '../middleware/authMiddleware.js';
+import { protect, protectAdmin } from '../middleware/authMiddleware.js';
 import {
   registerUser,
   authUser,
   getUserProfile,
   updateUserProfile,
+  getUsers,
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -17,5 +18,8 @@ router.post('/login', authUser);
 router.get('/profile', protect, getUserProfile);
 // Update user profile
 router.put('/profile', protect, updateUserProfile);
+
+// Get all users. ADMIN
+router.get('/', protect, protectAdmin, getUsers);
 
 export default router;
