@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts } from '../actions/productActions';
+import { listProducts, deleteProduct } from '../actions/productActions';
 
 const ProductListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,17 +15,24 @@ const ProductListScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const productDelete = useSelector((state) => state.productDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listProducts());
     } else {
       history.push('/login');
     }
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, userInfo, successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
-      // TODO: DELETE PRODUTCS
+      dispatch(deleteProduct(id));
     }
   };
 
@@ -45,10 +52,12 @@ const ProductListScreen = ({ history }) => {
           </Button>
         </Col>
       </Row>
-      {loading ? (
+      {loading || loadingDelete ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'>{error}</Message>
+      ) : errorDelete ? (
+        <Message variant='danger'>{errorDelete}</Message>
       ) : (
         <Table striped bordered hover responsive className='table-sm'>
           <thead>
