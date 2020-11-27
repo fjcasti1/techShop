@@ -62,7 +62,7 @@ const OrderListScreen = ({ history }) => {
                     )}
                   </td>
                   <td>
-                    {order.isDeleivered ? (
+                    {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
                       <i
