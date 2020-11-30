@@ -2,9 +2,13 @@ import asyncHandler from 'express-async-handler';
 import Product from '../models/productModel.js';
 
 // @desc    Fetch all products
-// @route   GET /api/products
+// @route   GET /api/products/?keyword=KEYWORD
 // @access  Public/
 const getProducts = asyncHandler(async (req, res) => {
+  const pageSize = 10;
+
+  const page = Number(req.query.pageNumber) || 1;
+
   const keyword = req.query.keyword
     ? {
         name: {
@@ -14,8 +18,12 @@ const getProducts = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const products = await Product.find({ ...keyword });
-  res.json(products);
+  const productCount = await Product.countDocuments({ ...keyword });
+
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ products, page, pages: Math.ceil(productCount / pageSize) });
 });
 
 // @desc    Fetch single product

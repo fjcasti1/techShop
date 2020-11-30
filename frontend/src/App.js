@@ -26,19 +26,30 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Route exact path='/' component={HomeScreen} />
-          <Route path='/search/:keyword' component={HomeScreen} />
+          <Route exact path='/search/:keyword' component={HomeScreen} />
+          <Route exact path='/page/:pageNumber' component={HomeScreen} />
+          <Route
+            exact
+            path='/search/:keyword/page/:pageNumber'
+            component={HomeScreen}
+          />
           <Route exact path='/login' component={LoginScreen} />
           <Route exact path='/register' component={RegisterScreen} />
           <Route exact path='/profile' component={ProfileScreen} />
           <Route exact path='/shipping' component={ShippingScreen} />
           <Route exact path='/payment' component={PaymentScreen} />
           <Route exact path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
+          <Route exact path='/order/:id' component={OrderScreen} />
+          <Route exact path='/product/:id' component={ProductScreen} />
+          <Route exact path='/cart/:id?' component={CartScreen} />
           <Route exact path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
+          <Route exact path='/admin/user/:id/edit' component={UserEditScreen} />
           <Route exact path='/admin/productlist' component={ProductListScreen} />
+          <Route
+            exact
+            path='/admin/productlist/:pageNumber'
+            component={ProductListScreen}
+          />
           <Route
             exact
             path='/admin/product/:id/edit'
