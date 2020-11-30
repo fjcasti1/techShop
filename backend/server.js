@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import morgan from 'morgan';
 import dotenv from 'dotenv';
 import 'colors';
 import connectDB from './config/db.js';
@@ -14,6 +15,11 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+// Log visualization using morgan in development
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // Accept json data in req.body
 app.use(express.json());

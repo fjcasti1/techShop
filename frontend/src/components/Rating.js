@@ -71,8 +71,8 @@ const Rating = ({ stars, color, numReviews }) => {
 };
 
 Rating.propTypes = {
-  stars: PropTypes.number.isRequired,
-  numReviews: PropTypes.number.isRequired,
+  stars: PropTypes.number,
+  numReviews: PropTypes.number,
   color: PropTypes.string,
 };
 
