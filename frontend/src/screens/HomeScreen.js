@@ -6,6 +6,7 @@ import { listProducts } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
+import ProductsCarousel from '../components/ProductsCarousel';
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -23,6 +24,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <Fragment>
+      {!keyword && <ProductsCarousel />}
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />
