@@ -25,6 +25,15 @@ h2 {
   padding: 0.5rem 0;
 }
 
+h3 {
+  font-size: 1.1rem;
+  padding: 0.3rem 0;
+}
+
+h4 {
+  font-size: 0.9rem;
+  padding: 0.2rem 0;
+}
 /* carousel */
 .carousel-item-prev,
 .carousel-item-next,
@@ -50,4 +59,85 @@ h2 {
 
 .carousel a {
   margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
+button#payButton {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+button#payButton:not([disabled]):hover {
+  /* border: 0.1rem var(--dark-gray) solid; */
+  filter: contrast(115%);
+}
+button#payButton:disabled {
+  cursor: default;
+}
+
+.spinner-payment,
+.spinner-payment:before,
+.spinner-payment:after {
+  border-radius: 50%;
+}
+
+.spinner-payment {
+  color: #fff;
+  font-size: 22px;
+  text-indent: -99999px;
+  margin: 0px auto;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  box-shadow: inset 0 0 0 2px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.spinner-payment:before,
+.spinner-payment:after {
+  position: absolute;
+  content: '';
+}
+
+.spinner-payment:before {
+  width: 10.4px;
+  height: 20.4px;
+  background-color: #1a1a1a;
+  border-radius: 20.4px 0 0 20.4px;
+  top: -0.2px;
+  left: -0.2px;
+  -webkit-transform-origin: 10.4px 10.2px;
+  transform-origin: 10.4px 10.2px;
+  -webkit-animation: loading 2s infinite ease 1.5s;
+  animation: loading 2s infinite ease 1.5s;
+}
+
+.spinner-payment:after {
+  width: 10.4px;
+  height: 10.2px;
+  background-color: #1a1a1a;
+  border-radius: 0 10.2px 10.2px 0;
+  top: -0.1px;
+  left: 10.2px;
+  -webkit-transform-origin: 0px 10.2px;
+  transform-origin: 0px 10.2px;
+  -webkit-animation: loading 2s infinite ease;
+  animation: loading 2s infinite ease;
+}
+
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
