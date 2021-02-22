@@ -1,5 +1,5 @@
 import express from 'express';
-import { protect, protectAdmin } from '../middleware/authMiddleware.js';
+import { isAuth, isAdmin } from '../middleware/authMiddleware.js';
 import {
   registerUser,
   authUser,
@@ -18,17 +18,17 @@ router.post('/', registerUser);
 // Log in user
 router.post('/login', authUser);
 // Get logged in user profile data
-router.get('/profile', protect, getUserProfile);
+router.get('/profile', isAuth, getUserProfile);
 // Update user profile
-router.put('/profile', protect, updateUserProfile);
+router.put('/profile', isAuth, updateUserProfile);
 
 // Get all users. ADMIN
-router.get('/', protect, protectAdmin, getUsers);
+router.get('/', isAuth, isAdmin, getUsers);
 // Delete user. ADMIN
-router.delete('/:id', protect, protectAdmin, deleteUser);
+router.delete('/:id', isAuth, isAdmin, deleteUser);
 // Get user by Id. ADMIN
-router.get('/:id', protect, protectAdmin, getUserById);
+router.get('/:id', isAuth, isAdmin, getUserById);
 // Update user. ADMIN
-router.put('/:id', protect, protectAdmin, updateUser);
+router.put('/:id', isAuth, isAdmin, updateUser);
 
 export default router;

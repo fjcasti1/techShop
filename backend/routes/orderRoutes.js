@@ -7,15 +7,15 @@ import {
   updateOrderToDelivered,
   getAllOrders,
 } from '../controllers/orderController.js';
-import { protect, protectAdmin } from '../middleware/authMiddleware.js';
+import { isAuth, isAdmin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/').get(protect, protectAdmin, getAllOrders);
-router.route('/').post(protect, addOrderItems);
-router.route('/myorders').get(protect, getUserOrders);
-router.route('/:id').get(protect, getOrderById);
-router.route('/:id/pay').put(protect, updateOrderToPaid);
-router.route('/:id/deliver').put(protect, protectAdmin, updateOrderToDelivered);
+router.route('/').get(isAuth, isAdmin, getAllOrders);
+router.route('/').post(isAuth, addOrderItems);
+router.route('/myorders').get(isAuth, getUserOrders);
+router.route('/:id').get(isAuth, getOrderById);
+router.route('/:id/pay').put(isAuth, updateOrderToPaid);
+router.route('/:id/deliver').put(isAuth, isAdmin, updateOrderToDelivered);
 
 export default router;
