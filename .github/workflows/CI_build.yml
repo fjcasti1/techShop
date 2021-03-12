@@ -25,7 +25,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Clean install server
     - run: npm ci
     - name: Clean install client
     - run: npm ci --prefix frontend
@@ -41,4 +40,3 @@ jobs:
     - run: npm run dev
     - name: Test that that client build worked and will be served up in production
     - run: NODE_ENV=production node server.js
-
