@@ -40,7 +40,7 @@ jobs:
       run: npm test --if-present
 
     - name: Test that the server starts
-      run: npm run server
+      run: npm run start
 
     - name: Test that the client starts
       run: npm run client
