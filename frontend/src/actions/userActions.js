@@ -53,7 +53,7 @@ export const register = (name, email, password) => async (dispatch) => {
       payload: res.data,
     });
 
-    localStorage.setItem('userInfo', JSON.stringify(res.data));
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
@@ -86,7 +86,7 @@ export const login = (email, password) => async (dispatch) => {
       payload: res.data,
     });
 
-    localStorage.setItem('userInfo', JSON.stringify(res.data));
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data));
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -99,7 +99,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  localStorage.removeItem('userInfo');
+  sessionStorage.removeItem('userInfo');
   dispatch({ type: ORDER_USER_LIST_RESET });
   dispatch({ type: USER_DETAILS_RESET });
   dispatch({ type: USER_LIST_RESET });
@@ -163,7 +163,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       type: USER_LOGIN_SUCCESS,
       payload: res.data,
     });
-    localStorage.setItem('userInfo', JSON.stringify(res.data));
+    sessionStorage.setItem('userInfo', JSON.stringify(res.data));
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,

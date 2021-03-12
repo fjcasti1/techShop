@@ -54,24 +54,24 @@ const reducers = combineReducers({
   orderList: orderListReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
+const cartItemsFromStorage = sessionStorage.getItem('cartItems')
+  ? JSON.parse(sessionStorage.getItem('cartItems'))
   : [];
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
-  ? JSON.parse(localStorage.getItem('userInfo'))
+const userInfoFromStorage = sessionStorage.getItem('userInfo')
+  ? JSON.parse(sessionStorage.getItem('userInfo'))
   : null;
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-  ? JSON.parse(localStorage.getItem('shippingAddress'))
+const shippingAddressFromStorage = sessionStorage.getItem('shippingAddress')
+  ? JSON.parse(sessionStorage.getItem('shippingAddress'))
   : {};
 
-const billingAddressFromStorage = localStorage.getItem('billingAddress')
-  ? JSON.parse(localStorage.getItem('billingAddress'))
+const billingAddressFromStorage = sessionStorage.getItem('billingAddress')
+  ? JSON.parse(sessionStorage.getItem('billingAddress'))
   : {};
 
-const priceFromStorage = localStorage.getItem('cartPrice')
-  ? JSON.parse(localStorage.getItem('cartPrice'))
+const priceFromStorage = sessionStorage.getItem('cartPrice')
+  ? JSON.parse(sessionStorage.getItem('cartPrice'))
   : {};
 
 const initialState = {
