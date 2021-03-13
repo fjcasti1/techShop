@@ -40,4 +40,4 @@ jobs:
         run: npm test --if-present
 
       - name: Test that that client build worked and will be served up in production
-        run: NODE_ENV=production node server.js
+        run: NODE_ENV=production node backend/server.js
