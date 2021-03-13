@@ -46,7 +46,7 @@ jobs:
       run: npm run client
 
     - name: Test that the both start
-      run: npm run dev
+      run: npm run prod
 
     - name: Test that that client build worked and will be served up in production
       run: NODE_ENV=production node server.js
