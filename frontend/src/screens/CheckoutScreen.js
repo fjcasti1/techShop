@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useStripe } from '@stripe/react-stripe-js';
 import Message from '../components/Message';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import axios from 'axios';
@@ -56,7 +56,6 @@ const CheckoutScreen = ({ history }) => {
   // ==================
   // Stripe Hooks
   const stripe = useStripe();
-  const elements = useElements();
   // Load Stripe Payment Intent
   useEffect(() => {
     const fetchPaymentIntent = async () => {
